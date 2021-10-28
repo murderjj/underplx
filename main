@@ -2,12 +2,6 @@ game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer(
 local player = game:GetService("Players").LocalPlayer
 wait(2)
 game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer('Welcome to underplx, '.. player.Name,"All")
-wait(0.5)
-local StarterGui = game:GetService("StarterGui")
-StarterGui:SetCore("ChatMakeSystemMessage",
-{Text = "Prefix is ",", for help join discord.gg/QVq7qea64b";
-Color = Color3.fromRGB(50, 50, 50);
-Font = Enum.Font.SourceSansBold;TextSize = 25})
 
 --]]
 
@@ -45,51 +39,12 @@ end
 
 
 _G.glitch = false
-local prefix = ","
+local prefix = ">"
 _G.loopX891KGPHLGLLXL0s0h = false
 ME.Chatted:Connect(function(msg)
-   if string.sub(msg, 1, 6) == prefix.."mute " then
+   if string.sub(msg, 1, 6) == prefix.."re" then
        for _, v in pairs(FindPlayer(string.sub(msg, 7))) do
-           for i,v in pairs(v.Character:GetDescendants()) do
-               if v:IsA("Tool") and v.Name == "BoomBox" then
-                   print(v.Name)
-                   v.Handle.Sound.Playing = false
-               end
-           end
-       end
-   end
-end)
-
-ME.Chatted:Connect(function(msg)
-   if string.sub(msg, 1, 11) == prefix.."supermute " then
-       for _, v in pairs(FindPlayer(string.sub(msg, 12))) do
-           if v:FindFirstChild("bad_MutedNoob") then
-               v["bad_MutedNoob"]:Destroy()
-           end
-           wait(0.1)
-           local value = Instance.new("BoolValue",v)
-           value.Name = "bad_MutedNoob"
-       end
-
-ME.Chatted:Connect(function(msg)
-   if string.sub(msg, 1, 13) == prefix.."unsupermute " then
-       for _, v in pairs(FindPlayer(string.sub(msg, 14))) do
-           if v:FindFirstChild("bad_MutedNoob") then
-               v:FindFirstChild("bad_MutedNoob"):Destroy()
-           end
-       end
-   end
-end)
-
-ME.Chatted:Connect(function(msg)
-   if string.sub(msg, 1, 15) == prefix.."removegearmesh" then
-game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").Handle.Mesh:remove()
-   end
-end)
-
-ME.Chatted:Connect(function(msg)
-   if string.sub(msg, 1, 17) == prefix.."re" then
-game.Players.LocalPlayer.Character.Humanoid.Name = 1
+ game.Players.LocalPlayer.Character.Humanoid.Name = 1
 local l = game.Players.LocalPlayer.Character["1"]:Clone()
 l.Parent = game.Players.LocalPlayer.Character
 l.Name = "Humanoid"
@@ -110,11 +65,36 @@ Instance.new("Humanoid", prt).Name="Humanoid";
 game.Players.LocalPlayer.Character=prt
 wait(6)
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Location
+               end
+           end
+       end)
+
+ME.Chatted:Connect(function(msg)
+   if string.sub(msg, 1, 11) == prefix.."supermute " then
+       for _, v in pairs(FindPlayer(string.sub(msg, 12))) do
+           if v:FindFirstChild("bad_MutedNoob") then
+               v["bad_MutedNoob"]:Destroy()
+           end
+
+           wait(0.1)
+           local value = Instance.new("BoolValue",v)
+           value.Name = "bad_MutedNoob"
+       end
+   end
+end)
+
+ME.Chatted:Connect(function(msg)
+   if string.sub(msg, 1, 13) == prefix.."unsupermute " then
+       for _, v in pairs(FindPlayer(string.sub(msg, 14))) do
+           if v:FindFirstChild("bad_MutedNoob") then
+               v:FindFirstChild("bad_MutedNoob"):Destroy()
+           end
+       end
    end
 end)
 
 game.Players.LocalPlayer.Chatted:connect(function(msg)
-if msg:sub(1, 6) == ",goto " then
+if msg:sub(1, 6) == ">goto " then
     local player
     for i, plr in ipairs(game.Players:GetPlayers()) do
     if string.lower(plr.Name):sub(1, string.len(msg:sub(7))) == string.lower(msg:sub(7)) then
@@ -125,16 +105,6 @@ game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace[player].H
 end
 end)
 
-ME.Chatted:Connect(function(msg)
-    if string.sub(msg, 1, 18) == prefix.."rj" then
-	rejoining = true
-	if syn.queue_on_teleport then
-		syn.queue_on_teleport('game:GetService("ReplicatedFirst"):RemoveDefaultLoadingScreen()')
-	end
-	game:GetService('TeleportService'):TeleportToPlaceInstance(game.PlaceId, game.JobId, cmdp)
-	wait(3)
-	rejoining = false
-end
 
 while game:GetService("RunService").Heartbeat:wait() do
    for i,v in next, game:GetService("Players"):GetPlayers() do
@@ -142,11 +112,8 @@ while game:GetService("RunService").Heartbeat:wait() do
            for i,v in pairs(v.Character:GetDescendants()) do
               if v:IsA("Tool") and v.Name == "BoomBox" then
                   v.Handle.Sound.Playing = false
-        end
-    end
+              end
+              end
+       end
+   end
 end
-end
-end
-end)
-end
-end)
